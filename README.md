@@ -41,6 +41,7 @@ Be robust to outliers and heterogeneous feature scales
 Serve as a learning exercise in understanding the mechanics of boosting
 
 * How did you test your model to determine if it is working reasonably correctly?
+
 We wrote seven PyTest scenarios, each with its own dataset and minimum‐accuracy threshold:
 
 i) Toy data: basic sanity check, ≥75% accuracy
@@ -60,26 +61,38 @@ vii) Edge cases: single-feature inputs, extreme regularization, coefficient spar
 For each test, we also generated a “True vs. Predicted” plot (with y-axis clipped at zero) so we could visually verify that no invalid (negative) outputs were produced.
 
 * What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.)
+
 n_estimators/n_rounds: number of boosting iterations
 learning_rate/lr: shrinkage factor on each new learner
 base_learner_cls & base_learner_params: allows swapping in deeper trees (e.g., depth-2/3) or any custom regressor.
 
 example usage:
+
 import numpy as np
+
 from model.GradientBoostingTree import BoostingClassifier
+
 features = np.array([
     [1, 2],
     [2, 3],
     [3, 4],
     [4, 5]
 ])
+
 labels = np.array([0, 0, 1, 1])
+
 classifier = BoostingClassifier(n_rounds=20, lr=0.1)
+
 classifier.fit(features, labels)
+
 predictions = classifier.predict(features)
+
 probabilities = classifier.predict_proba(features)
+
 print("Predicted labels:      ", predictions)
+
 print("Predicted probabilities:", probabilities)
+
 
 
 * Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
