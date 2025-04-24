@@ -2,9 +2,13 @@
 
 ## Team Members
 Sudireddy Raghavender Reddy (A20554654) 
+
 Chaitanya Durgesh Nynavarapu(A20561894)
+
 Purnachandra Reddy Peddasura(A20544751)
+
 jeswanth jayavarapu (A20547505)
+
 
 ## Steps to run project
 1) python -m venv venv
@@ -40,12 +44,19 @@ Serve as a learning exercise in understanding the mechanics of boosting
 We wrote seven PyTest scenarios, each with its own dataset and minimum‐accuracy threshold:
 
 i) Toy data: basic sanity check, ≥75% accuracy
+
 ii) Synthetic random & noisy data: noise robustness, ≥70% accuracy
+
 iii) Highly collinear features: feature-selection behavior, ≥75% accuracy
+
 iv) Imbalanced classes (90/10): skew handling, ≥65% accuracy
+
 v) Non-linear (radial) data: complex boundary, ≥70% accuracy
+
 vi) Scikit-learn comparison: small random set comparison to a library implementation (predictions and metrics align within tolerance)
+
 vii) Edge cases: single-feature inputs, extreme regularization, coefficient sparsity checks
+
 For each test, we also generated a “True vs. Predicted” plot (with y-axis clipped at zero) so we could visually verify that no invalid (negative) outputs were produced.
 
 * What parameters have you exposed to users of your implementation in order to tune performance? (Also perhaps provide some basic usage examples.)
@@ -72,6 +83,8 @@ print("Predicted probabilities:", probabilities)
 
 
 * Are there specific inputs that your implementation has trouble with? Given more time, could you work around these or is it fundamental?
+
+
 Severe class imbalance can cause the model to predict only the majority class under the default 0.5 cutoff, though we mitigate this by scanning for the F1-optimal threshold. Very high-dimensional, sparse inputs make stump-based splits uninformative when most features are zero. Extremely noisy or heavily overlapping classes risk overfitting unless we limit boosting rounds or add regularization.
 
 Given more time, we’d add early stopping on a held-out validation set to halt training once performance plateaus.
