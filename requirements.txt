@@ -1,5 +1,6 @@
-numpy
-pytest
+numpy>=1.19.0
+scikit-learn>=0.24.0
+pytest>=6.0.0
 matplotlib
 pandas
 seaborn
